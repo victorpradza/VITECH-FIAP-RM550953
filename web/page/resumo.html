@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitech - Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .small-chart {
+      width: 200px;
+      height: 200px;
+      position: sticky;
+      top: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Barra de navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"><i class="fas fa-user"></i> Olá Victor!</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fas fa-home"></i> Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-user"></i> Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-chart-pie"></i> Resumo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Conteúdo principal -->
+    <section class="container mt-4">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1 class="mb-4"><i class="fas fa-chart-bar"></i> Resumo Financeiro</h1>
+          <div class="card">
+            <div class="card-header"><i class="fas fa-wallet"></i> Saldo Atual</div>
+            <div class="card-body">
+              <h5 class="card-title">R$ 333.666,99</h5>
+            </div>
+          </div>
+          <h2 class="mt-4"><i class="fas fa-history"></i> Histórico de Transações</h2>
+          <ul class="list-group mt-2">
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">20/06</h5>
+              <small>15:45</small>
+            </div>
+            <p class="mb-1">Mir4 - Reidos coins</p>
+            <span class="badge badge-primary">R$ 2000,00</span>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">20/06</h5>
+              <small>15:45</small>
+            </div>
+            <p class="mb-1">Spotify</p>
+            <span class="badge badge-primary">R$ 19,99</span>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">01/07</h5>
+              <small>20:15</small>
+            </div>
+            <p class="mb-1">Netflix</p>
+            <span class="badge badge-primary">R$ 29,90</span>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">30/06</h5>
+              <small>12:30</small>
+            </div>
+            <p class="mb-1">Supermercado</p>
+            <span class="badge badge-primary">R$ 2208,50</span>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">28/06</h5>
+              <small>19:45</small>
+            </div>
+            <p class="mb-1">Restaurante</p>
+            <span class="badge badge-primary">R$ 120,00</span>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">05/07</h5>
+              <small>09:30</small>
+            </div>
+            <p class="mb-1">Uber</p>
+            <span class="badge badge-primary">R$ 25,00</span>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">10/07</h5>
+              <small>14:20</small>
+            </div>
+            <p class="mb-1">Cinema</p>
+            <span class="badge badge-primary">R$ 35,00</span>
+          </li>
+          
+            <!-- Restante das transações -->
+          </ul>
+        </div>
+        <div class="col-lg-4 d-flex align-items-start justify-content-end">
+          <canvas id="graficoPizza" class="small-chart"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    //  elemento canvas 
+    var graficoPizza = document.getElementById('graficoPizza').getContext('2d');
+  
+    // Define os dados
+    var dadosGrafico = {
+      labels: ['Alimentação', 'Transporte', 'Lazer', 'Outros'],
+      datasets: [{
+        data: [2328.08, 25, 2085, 200],
+        backgroundColor: ['#FF0000', '#FFFF00', '#00FF00', '#FF00FF'],
+      }]
+    }; 
+  
+    // Cria o gráfico de pizza
+    var chart = new Chart(graficoPizza, {
+      type: 'pie',
+      data: dadosGrafico,
+      options: {
+        responsive: true,
+        legend: {
+          display: true
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+<br>
+  <footer>
+    <!-- rodapé -->
+    <div class="footer text-center">
+      <p>Todos os direitos reservados &copy; 2023 Vitech</p>
+    </div>
+  </footer>
